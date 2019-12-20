@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { ReimbursementsByStatusDisplayComponent } from "./ReimbursementByStatusDisplayComponent"
 import { IState } from "../../reducers"
-
+import {reimbursementID} from "../../action-mappers/reimbursement-action-mapper"
 const mapStateToProps = (state:IState, ownProps:any) => {
     return {
         user:state.login.user,
@@ -10,5 +10,9 @@ const mapStateToProps = (state:IState, ownProps:any) => {
         location:ownProps.location
     }
 }
+    const mapDispatchtoProps = {
+    reimbursementID
+    }
 
-export default connect(mapStateToProps)(ReimbursementsByStatusDisplayComponent)
+
+export default connect(mapStateToProps,mapDispatchtoProps)(ReimbursementsByStatusDisplayComponent)

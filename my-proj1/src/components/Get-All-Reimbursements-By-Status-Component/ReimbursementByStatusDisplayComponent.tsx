@@ -1,5 +1,5 @@
-import { Table } from "reactstrap";
-import React from "react";
+import { Table, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import React, { SyntheticEvent } from "react";
 import { Reimbursement } from "../../models/reimbursement";
 import { RouteComponentProps, Redirect } from "react-router";
 import { ReimbursementByStatusDisplayRowComponent } from "./reimbursement-by-status-display-row/ReimbursementByStatusDisplayRowComponent";
@@ -7,26 +7,38 @@ import { getReimbursementByStatus } from "../../remote/reimbursements-clients/re
 
 interface IReimbursementDisplayProps extends RouteComponentProps{
     reimbursement:Reimbursement
+reimbursementID:(id:number)=>void
 }
 
 interface IReimbursementsDisplayState{
-    allReimbursements: Reimbursement[]
+    allReimbursements: Reimbursement[],
+    id:number
 }
 
-export class ReimbursementsByStatusDisplayComponent extends React.Component<any, IReimbursementsDisplayState>{
+export class ReimbursementsByStatusDisplayComponent extends React.Component<IReimbursementDisplayProps,IReimbursementsDisplayState>{
     //is in charge of holding all the gardens
     //it thens creates a gardendisplayrow component for each of those gardens
     //and renders them inside a table
     constructor(props: any) {
         super(props)
         this.state = {
-            allReimbursements: []
+            allReimbursements: [],
+            id: 0
         }
     }
-
+    updateId = (e:any)=>{
+        this.setState ({
+            ...this.state,
+            id:e.target.value
+        })
+    }
+submitId = async (e:SyntheticEvent) => {
+    e.preventDefault()
+    this.props.reimbursementID(this.state.id)
+}
     async componentDidMount() {
         try {
-            let r = await getReimbursementByStatus(this.props.user.userId)
+            let r = await getReimbursementByStatus(this.props.reimbursement.reimbursementId)
             if (r.status === 200) {
                 this.setState({
                     ...this.state,
@@ -38,7 +50,8 @@ export class ReimbursementsByStatusDisplayComponent extends React.Component<any,
 
         }
     }
-//this comment is fake
+    
+
     render() {
         let rows = this.state.allReimbursements.map((e) => {
             return <ReimbursementByStatusDisplayRowComponent reimbursement={e} key={'reimbursement' + e.reimbursementId } />
@@ -46,6 +59,13 @@ export class ReimbursementsByStatusDisplayComponent extends React.Component<any,
         return (
             
                 <div>
+                    <Form onSubmit={this.submitId}>
+                    <FormGroup>
+                        <Label for="exampleID">ID</Label>
+                        <Input value={this.state.id} onChange={this.updateId} type="number" name="ID" id="exampleID" placeholder="with a placeholder" />
+                    </FormGroup>
+                    <Button color='danger'>Submit</Button>
+                    </Form>
                     <Table bordered color='danger'>
                         <thead>
                             <tr>
@@ -61,6 +81,7 @@ export class ReimbursementsByStatusDisplayComponent extends React.Component<any,
                             {rows}
                         </tbody>
                     </Table>
+                    
                 </div>
                 
                 
