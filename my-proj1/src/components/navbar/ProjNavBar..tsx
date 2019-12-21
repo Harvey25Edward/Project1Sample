@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
   return (
     <div>
       <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
+        <NavbarBrand href="/" className="mr-auto">Monsters.inc</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
