@@ -5,8 +5,8 @@ import { Reimbursement } from "../models/reimbursement";
 import { reimbursementReducer } from "./reimbursement-reducer";
 
 export interface IState{
-    login:ILoginState
-
+    login:ILoginState,
+    reimb:IReimbursment
 }
 
 
@@ -16,22 +16,23 @@ export interface ILoginState {
 
 
 export const state = combineReducers<IState>({
-    login:loginReducer
+    login:loginReducer,
+    reimb:reimbursementReducer
 })
 
-export interface IRState{
+export interface IState{
     reimb:IReimbursment
 
 }
 
 
 export interface IReimbursment {
-    reimbursement:Reimbursement
+    reimbursement:Reimbursement[]
 }
 
 
-export const rstate = combineReducers<IRState>({
-    reimb:reimbursementReducer
-})
+// export const rstate = combineReducers<IRState>({
+//     reimb:reimbursementReducer
+// })
 
 

@@ -3,7 +3,7 @@ import { Reimbursement } from "../models/reimbursement"
 import { ReimbTypes } from "../action-mappers/reimbursement-action-mapper"
 
 const initialStater: IReimbursment = {
-   reimbursement:new Reimbursement(0,0,0,0,0,'',0,0,0)
+   reimbursement: [new Reimbursement(0, 0, 0, 0, 0, '', 0, 0, 0)]
 }
 
 

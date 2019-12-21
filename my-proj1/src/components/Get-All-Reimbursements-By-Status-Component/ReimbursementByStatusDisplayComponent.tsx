@@ -6,24 +6,38 @@ import { ReimbursementByStatusDisplayRowComponent } from "./reimbursement-by-sta
 import { getReimbursementByStatus } from "../../remote/reimbursements-clients/reimbursements-by-status";
 
 interface IReimbursementDisplayProps extends RouteComponentProps {
-    reimbursement: Reimbursement
-    reimbursementID: (id: number) => void
+    reimbursement: Reimbursement[]
+  reimbursementID: (id: number) => void
 }
 
-interface IReimbursementsDisplayState {
-    allReimbursements: Reimbursement[],
-    id: number
-}
+//  interface IReimbursementsDisplayState {
+//     allReimbursements: Reimbursement[],
+//     id: number
+// }
 
-export class ReimbursementsByStatusDisplayComponent extends React.Component<any, IReimbursementsDisplayState>{
+export class ReimbursementsByStatusDisplayComponent extends React.Component<IReimbursementDisplayProps,any >{
 
     constructor(props: any) {
         super(props)
-        this.state = {
-            allReimbursements: [],
-            id: 0
+       this.state = {
+            id:undefined
         }
     }
+    // async componentDidMount() {
+    //     try {
+    //         let r = await getReimbursementByStatus(this.props.reimbursement.reimbursementId)
+    //         if (r.status === 200) {
+    //             this.setState({
+    //                 ...this.state,
+    //                 allReimbursements: r.body
+    //             })
+    //         }
+    //     } catch (e) {
+    //         console.log(e);
+
+    //     }
+    // }
+
     updateId = (e: any) => {
         this.setState({
             ...this.state,
@@ -32,26 +46,13 @@ export class ReimbursementsByStatusDisplayComponent extends React.Component<any,
     }
     submitId = async (e: SyntheticEvent) => {
         e.preventDefault()
+        
         this.props.reimbursementID(this.state.id)
     }
-    async componentDidMount() {
-        try {
-            let r = await getReimbursementByStatus(this.props.reimbursement.reimbursementId)
-            if (r.status === 200) {
-                this.setState({
-                    ...this.state,
-                    allReimbursements: r.body
-                })
-            }
-        } catch (e) {
-            console.log(e);
-
-        }
-    }
-
+    
 
     render() {
-        let rows = this.state.allReimbursements.map((e) => {
+        let rows = this.props.reimbursement.map((e) => {
             return <ReimbursementByStatusDisplayRowComponent reimbursement={e} key={'reimbursement' + e.reimbursementId} />
         })
         return (

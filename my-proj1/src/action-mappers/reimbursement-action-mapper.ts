@@ -15,7 +15,7 @@ export const reimbursementID = (id:number) => async (dispatch:any) => {
             dispatch({
                 type:ReimbTypes.SUCCESSFUL_REIMBURSEMENT,
                 payload:{
-                    reimbursements:res.body
+                    reimbursement:res.body
                 }
             })
         }else{

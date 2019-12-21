@@ -1,13 +1,12 @@
 import { connect } from "react-redux"
 import { ReimbursementsByStatusDisplayComponent } from "./ReimbursementByStatusDisplayComponent"
-import { IRState } from "../../reducers"
+import { IState } from "../../reducers"
 import {reimbursementID} from "../../action-mappers/reimbursement-action-mapper"
-const mapStateToProps = (state:IRState, ownProps:any) => {
+const mapStateToProps = (state:IState) => {
     return {
-        reimbursement:state.reimb,
-        history:ownProps.history,
-        match:ownProps.match,
-        location:ownProps.location
+        
+        reimbursement:state.reimb.reimbursement
+       
     }
 }
     const mapDispatchtoProps = {
