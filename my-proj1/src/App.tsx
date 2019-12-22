@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './Store';
 import ReimbursementsByStatusDisplayComponent  from './components/Get-All-Reimbursements-By-Status-Component/ReimbursementByStatusDisplayContainer';
 
+import  UserByIdDisplayComponent  from './components/Get-User-By-Id-Component/Get-User-By-Id-Container';
 
 const App: React.FC = () => {
   return (
@@ -18,11 +19,12 @@ const App: React.FC = () => {
      <Pnavbar/>
      <Switch>
      <Route path='/login' component={LoginComponent}/>
-   
-     
-              <Route path='/users/' component={UsersDisplayComponent} />
+     <Route path='/users/id' component={UserByIdDisplayComponent} />
+      {/* <Route path='/users/update/display' component={UserUpdateComponent} /> */}
+              <Route path='/users/allusers/' component={UsersDisplayComponent} />
               <Route path='/reimbursements/status/' component={ReimbursementsByStatusDisplayComponent} />
               <Route path='/'>
+              
                
               </Route>
      </Switch>  

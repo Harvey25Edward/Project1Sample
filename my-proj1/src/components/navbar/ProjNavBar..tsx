@@ -18,15 +18,19 @@ import { Link } from 'react-router-dom';
               <NavLink href="/login/">login</NavLink>
             </NavItem>
             <NavItem>
+              <Link to='/users/id/'>userbyId</Link> 
+            </NavItem>
+            <NavItem>
+              <Link to='/users/update'>update</Link> 
+            </NavItem>
+            <NavItem>
             
-               <Link to='/users/display'>users</Link> 
+               <Link to='/users/allusers/display'>users</Link> 
             </NavItem>
             <NavItem>
                <Link to='/reimbursements/status/'>Reimbursements</Link> 
             </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
+            
           </Nav>
         </Collapse>
       </Navbar>

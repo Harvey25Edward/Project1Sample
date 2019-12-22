@@ -18,7 +18,7 @@ export const reimbursementReducer = (state = initialStater, action:any) => {
             return {
                 ...state,
                 reimbursement:action.payload.reimbursement,
-               // reimbursement:state.reimbursement
+               
             }
         }
         default:
