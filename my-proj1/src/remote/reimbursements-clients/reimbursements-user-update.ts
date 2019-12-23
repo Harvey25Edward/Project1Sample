@@ -1,22 +1,30 @@
 import { reimbursementUserClient } from "./reimbursements-clients-users/reimbursement-user-client";
-import { Role } from "../../models/role";
 
-export const reimbursementUpdateUser = async (userId:number,username:string, password:string, firstname:string, lastname:string, email:string, roles:Role[]) => {
-    try{
-        let response = await reimbursementUserClient.patch('/users/')
-        if(response.status === 200){
-            return{
-                status:response.status,
-                body:response.data
-            }
-        }else{
+
+export async function updateUser(userId: number, username: string, password: string, firstName: string, lastName: string, email: string) {
+    const updateFields = {
+        userId,
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+    }
+    try {
+        let response = await reimbursementUserClient.patch('/users', updateFields)
+        if (response.status === 200) {
             return {
-                status:response.status,
-                body:undefined
+                status: response.status,
+                body: response.data
+            }
+        } else {
+            return {
+                status: response.status,
+                body: undefined
             }
         }
-    }catch(e){
+    } catch (e) {
         console.log(e);
-        throw new Error('Something Went Wrong 1')
+        throw new Error('Something Went Wrong')
     }
 }

@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom';
               <Link to='/users/id/'>userbyId</Link> 
             </NavItem>
             <NavItem>
-              <Link to='/users/update'>update</Link> 
+              <Link to='/users/update/form'>update</Link> 
             </NavItem>
             <NavItem>
             
@@ -29,6 +29,14 @@ import { Link } from 'react-router-dom';
             </NavItem>
             <NavItem>
                <Link to='/reimbursements/status/'>Reimbursements</Link> 
+            </NavItem>
+
+            <NavItem>
+               <Link to='/reimbursements/update/form/'>Reimbursements Update</Link> 
+            </NavItem>
+
+            <NavItem>
+               <Link to='/reimbursements/user/display/'>Reimbursements By User ID </Link> 
             </NavItem>
             
           </Nav>
